@@ -19,7 +19,7 @@ This class contains methods to
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "SecretKey";
+    private final String SECRET_KEY = "secretkey";
 
     //To Extract username from the token
     public String extractUsername(String token) {
@@ -47,7 +47,6 @@ public class JwtUtil {
      */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("Jwt","Java");
         //it's not only gonna include claims which we are passing but also username of the user logged in.
         return createToken(claims, userDetails.getUsername());
     }
@@ -57,7 +56,8 @@ public class JwtUtil {
         claims = extra info that we wanna include in the payload.
         subject = user that is getting authenticated.
         */
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+        return Jwts.builder().setClaims(claims).setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();//End of Builder Pattern.
     }

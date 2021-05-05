@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if(username.equals("user")){
-            return  new User("user","password",new ArrayList<>()); // this arrayList basically contains list of permissions
+        if(username.equals("test1")){
+            return  new User("test1","password",new ArrayList<>()); // this arrayList basically contains list of permission/Authorities That user has.
         }else {
             throw new UsernameNotFoundException("user not found!!!");
         }
